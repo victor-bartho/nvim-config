@@ -102,6 +102,8 @@ return{
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
+
+      -- VICTOR cheatsheet for working-directory refactor: grep search, then, with results on grep screen, press ctrl + Q, to send grep search results to a new quickfix buffer. then, to refactor, do ":cdo s/NomeAtual/NovoNome/gc"
     end,
   },
 }
