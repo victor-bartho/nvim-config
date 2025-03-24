@@ -28,16 +28,19 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  require 'kickstart.plugins.colorscheme',
   require 'kickstart.plugins.gitsigns',
   require 'kickstart.plugins.which-key',
   require 'kickstart.plugins.telescope',
   require 'kickstart.plugins.lsp-plugins',
   require 'kickstart.plugins.autocompletion',
-  require 'kickstart.plugins.colorscheme',
   require 'kickstart.plugins.todo-comments',
   require 'kickstart.plugins.mini-nvim',
   require 'kickstart.plugins.treesitter',
   require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.lint',
+
+
 
 
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
@@ -47,7 +50,6 @@ require('lazy').setup({
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.
-
   -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
   --
   --  Here are some example plugins that I've included in the Kickstart repository.

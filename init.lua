@@ -93,10 +93,10 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+-- LOAD DEFAULT KICKSTART NVIM CONFIGS AND SETUPS
 require 'victor.my-vim-opts'
 require 'victor.my-vim-keymaps'
 require 'victor.my-autocommands'
-
 require 'lazy-config'
 -- LOAD PERSONAL CONFGIS AND SETUPS
 require 'victor.my-vim-opts'

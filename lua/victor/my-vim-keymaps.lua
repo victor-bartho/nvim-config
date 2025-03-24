@@ -15,6 +15,7 @@ vim.keymap.set('n', '<C-n>', ':bn<CR>', { noremap = true })
 vim.keymap.set('n', '<C-p>', ':bp<CR>', { noremap = true })
 vim.keymap.set('n', '<C-d>', ':bd<CR>', { noremap = true })
 
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
