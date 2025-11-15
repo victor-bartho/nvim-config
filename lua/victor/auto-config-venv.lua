@@ -2,6 +2,7 @@
 local venvs = {
   ["/home/bart/my-coding-projects/utils/ml-utils"] = "/home/bart/my-coding-projects/utils/.venv/bin/python3.12",
   ["/home/bart/my-coding-projects/google_sheets_automation_script_biopsies/gsheets-biopsy"] = "/home/bart/my-coding-projects/google_sheets_automation_script_biopsies/.venv/bin/python3.12",
+  ["/home/bart/my-coding-projects/leetcode_solutions/solutions"] = "/home/bart/my-coding-projects/leetcode_solutions/.venv/bin/python3.12",
   ["/home/bart/my-coding-projects/project2"] = "/home/bart/my-coding-projects/project2/.venv/bin/python3.8",
   -- Adicione mais projetos e seus ambientes virtuais aqui
 }
