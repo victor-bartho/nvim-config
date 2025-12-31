@@ -2,8 +2,8 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
--- Configuração do Ruler (linha 120)
-vim.opt.colorcolumn = "120"  -- Exibe uma linha vertical em 120 caracteres
+-- Configuração do Ruler (linha 100)
+vim.opt.colorcolumn = '100' -- Exibe uma linha vertical em 100 caracteres
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -34,6 +34,9 @@ end)
 
 -- Enable break indent
 vim.opt.breakindent = true
+
+-- Disable word wrap
+vim.opt.wrap = false
 
 -- Save undo history
 vim.opt.undofile = true
@@ -69,4 +72,3 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
-
