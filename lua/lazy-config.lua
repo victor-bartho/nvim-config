@@ -30,7 +30,6 @@ require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   require 'kickstart.plugins.colorscheme',
   require 'kickstart.plugins.gitsigns',
-  require 'kickstart.plugins.which-key',
   require 'kickstart.plugins.telescope',
   require 'kickstart.plugins.lsp-plugins',
   require 'kickstart.plugins.autocompletion',

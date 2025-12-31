@@ -166,12 +166,35 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        html = {},
-        cssls = {},
-        emmet_language_server = {},
-        --emmet_ls = {},
+         -- HTML
+          html = {},
+
+          -- CSS / SCSS
+          cssls = {},
+
+          -- JavaScript / TypeScript / React
+          ts_ls = {
+            filetypes = {
+              "javascript",
+              "javascriptreact",
+              "javascript.jsx",
+              "typescript",
+              "typescriptreact",
+              "typescript.tsx",
+            },
+          },
+
+          -- Emmet (APENAS para markup / JSX / TSX)
+          emmet_language_server = {
+            filetypes = {
+              "html",
+              "css",
+              "scss",
+              "javascriptreact",
+              "typescriptreact",
+            },
+          },       
         pyright = {},
-        r_language_server = {},
         -- clangd = {},
         -- gopls = {},
         -- rust_analyzer = {},
@@ -199,6 +222,7 @@ return {
           },
         },
       }
+      
 
       -- Ensure the servers and tools above are installed
       --

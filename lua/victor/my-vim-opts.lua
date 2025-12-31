@@ -21,8 +21,8 @@ vim.opt.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
--- VICTOR: tentando mudar a fonte
-vim.opt.guifont = 'NotoSans'
+-- VICTOR: tentando mudar a fonte (actually not important anymore pq estou usando kitty)
+--vim.opt.guifont = 'DejaVu Sans Mono'
 -- Sync clipboard between OS and Neovim.
 
 --  Schedule the setting after `UiEnter` because it can increase startup-time.

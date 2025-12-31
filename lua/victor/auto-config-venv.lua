@@ -1,55 +1,35 @@
--- Mapeamento de diretórios e seus respectivos ambientes virtuais
+-- Mapeamento de venvs: lista a ser preenchida manualmente
 local venvs = {
-  ["/home/bart/my-coding-projects/utils/ml-utils"] = "/home/bart/my-coding-projects/utils/.venv/bin/python3.12",
-  ["/home/bart/my-coding-projects/google_sheets_automation_script_biopsies/gsheets-biopsy"] = "/home/bart/my-coding-projects/google_sheets_automation_script_biopsies/.venv/bin/python3.12",
-  ["/home/bart/my-coding-projects/leetcode_solutions/solutions"] = "/home/bart/my-coding-projects/leetcode_solutions/.venv/bin/python3.12",
-  ["/home/bart/my-coding-projects/project2"] = "/home/bart/my-coding-projects/project2/.venv/bin/python3.8",
-  -- Adicione mais projetos e seus ambientes virtuais aqui
+  ['/home/bart/coding/projects/biopsy-manager/app/'] = '/home/bart/coding/projects/biopsy-manager/.venv/bin/python',
 }
 
--- Função para tentar encontrar o caminho correto para o ambiente virtual
-local function find_venv_path(project_dir)
-  local parent_dir = vim.fn.fnamemodify(project_dir, ":h")  -- Obtém o diretório pai
-  local venv_path = parent_dir .. "/.venv/bin/python3.12"  -- Ajuste conforme a versão do seu Python
-
-  if vim.fn.filereadable(venv_path) == 1 then
-    return venv_path
-  else
-    return nil
-  end
-end
-
--- Autocomando para ativar o ambiente virtual quando o diretório específico for selecionado
-vim.api.nvim_create_autocmd({"VimEnter", "DirChanged"}, {
-  pattern = "*",  -- Aplica para todos os diretórios
+vim.api.nvim_create_autocmd({ 'VimEnter', 'DirChanged' }, {
+  pattern = '*',
   callback = function()
-    local current_dir = vim.fn.getcwd()  -- Obtém o diretório atual
+    local current_dir = vim.fn.getcwd() .. '/' -- Mantivemos sua lógica de adicionar a barra final
 
     -- Verifica se o diretório atual está na lista de venvs
-    for dir, venv_python_path in pairs(venvs) do
-      if current_dir == dir then
-        -- Tentando localizar o venv a partir do diretório do projeto
-        local venv_path = find_venv_path(current_dir)
+    local venv_python_path = venvs[current_dir]
 
-        if venv_path then
-          -- Define as variáveis de ambiente para usar o ambiente virtual
-          vim.env.VIRTUAL_ENV = vim.fn.fnamemodify(venv_path, ":h:h")  -- Obtém o diretório .venv
-          vim.env.PATH = vim.env.VIRTUAL_ENV .. "/bin:" .. vim.env.PATH
-          vim.env.PYTHONPATH = vim.env.VIRTUAL_ENV .. "/lib/python3.12/site-packages"
+    if venv_python_path then
+      if vim.fn.filereadable(venv_python_path) == 1 then
+        -- Define as variáveis de ambiente
+        -- :h remove 'python', :h remove 'bin' -> sobra o caminho da raiz do venv
+        local venv_root = vim.fn.fnamemodify(venv_python_path, ':h:h')
 
-          -- Atualiza o Python do Neovim para usar o Python do ambiente virtual
-          vim.g.python3_host_prog = venv_python_path
+        vim.env.VIRTUAL_ENV = venv_root
+        vim.env.PATH = venv_root .. '/bin:' .. vim.env.PATH
+        vim.env.PYTHONPATH = venv_root .. '/lib/python/site-packages'
 
-          print("Ambiente virtual ativado para o projeto: " .. current_dir)
-        else
-          print("Ambiente virtual não encontrado para o projeto: " .. current_dir)
-        end
-        return
+        -- Atualiza o host python do Neovim
+        vim.g.python3_host_prog = venv_python_path
+
+        vim.fn.input('🐍VENV ATIVADO COM SUCESSO! 📂:' .. venv_root .. '                         Pressione <Enter> para prosseguir...')
+      else
+        vim.fn.input('❌Erro: O caminho do venv preenchido no dotfile nao existe 📂: ' .. venv_python_path)
       end
     end
-    print("Nenhum ambiente virtual encontrado para este diretório.")
-  end
+  end,
 })
 
 return {}
-
